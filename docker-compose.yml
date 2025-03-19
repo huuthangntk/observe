@@ -10,7 +10,7 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD="bD9bNK7Z"
       - GF_SECURITY_ADMIN_USER="bimarz"
     volumes:
-      - "./grafanadata:/etc/grafana:rw"
+      - "./grafanadata/:/etc/grafana:rw"
 
   prometheus:
     container_name: prometheus
@@ -23,5 +23,5 @@ services:
     ports:
       - "1212:1212"
     volumes:
-      - "./prometheusdata:/etc/prometheus:rw"
+      - "/data/coolify/applications/z4kwkkc40owg4o8g84c84c8k/prometheusdata/:/etc/prometheus:rw"
       - "./prometheusdb:/prometheus/data:rw"
