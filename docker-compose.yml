@@ -2,14 +2,17 @@ services:
   grafana:
     container_name: grafana
     restart: always
-    image: "grafana/grafana:9.5.20"
+    image: "grafana/grafana:11.5.2"
     ports:
       - "6666:6666"
     environment:
       - "GF_INSTALL_PLUGINS=grafana-piechart-panel,jdbranham-diagram-panel"
+      - GF_SECURITY_ADMIN_PASSWORD="bD9bNK7Z"
+      - GF_SECURITY_ADMIN_USER="bimarz"
+
   prometheus:
     container_name: prometheus
-    image: "prom/prometheus:v2.53.1"
+    image: "prom/prometheus:v3.2.1"
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--web.external-url=http://prometheus:9090/"
