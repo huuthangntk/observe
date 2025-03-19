@@ -1,0 +1,22 @@
+services:
+  grafana:
+    container_name: grafana
+    restart: always
+    image: "grafana/grafana:9.5.20"
+    ports:
+      - "6666:6666"
+    environment:
+      - "GF_INSTALL_PLUGINS=grafana-piechart-panel,jdbranham-diagram-panel"
+  prometheus:
+    container_name: prometheus
+    image: "prom/prometheus:v2.53.1"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.external-url=http://prometheus:9090/"
+      - "--web.route-prefix=/"
+    restart: always
+    ports:
+      - "1212:1212"
+    volumes:
+      - "./prometheusdata:/etc/prometheus:rw"
+      - "./prometheusdb:/prometheus/data:rw"
